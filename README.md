@@ -3,10 +3,16 @@ This is a c program that reads the characters from a source text file and output
 
 # C program to count the occurrences of all the distinct words in a file
 
-//v1 opens the input file and displays output on the screen 
-//v2 opens two files and save output to file named output
+# words_occurrences1 
+//opens the input file and displays output on the screen 
 
-I want to create a dynamic array so that it will be able to read approximately one million words but i'm having issues doing that.
+# words_occurrences2 
+//opens two files and save output to file named output
+
+# words_occurrences_v3errors
+//trying to create dynamic array to read 1 million+ words
+
+I want to create a dynamic array so that it will be able to read approximately one million+ words but i'm having issues doing that.
 
 The limited number of words it can read now is approximately 40000 using stack allocation.
 That's, MAX_WORDS can't be approximately more than 40000.
