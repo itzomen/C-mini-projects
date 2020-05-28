@@ -47,7 +47,7 @@ int main(){
     while (fscanf(fp, "%s", word) != EOF)
     {
         /* convert word to lowercase */
-        //strlwr(*word);
+        strlwr(word);
 
         //removin punctuation character
         length = strlen(word);
