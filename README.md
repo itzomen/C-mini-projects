@@ -9,12 +9,15 @@ This is a c program that reads the characters from a source text file and output
 # words_occurrences2 
 //opens two files and save output to file named output
 
-# words_occurrences_v3errors
-//trying to create dynamic array to read 1 million+ words
+# words_occurrencesv3
+//creates dynamic array to read 1 million+ words
 
 I want to create a dynamic array so that it will be able to read approximately one million+ words but i'm having issues doing that.
+
 
 The limited number of words it can read now is approximately 40000 using stack allocation.
 That's, MAX_WORDS can't be approximately more than 40000.
 
-Help highly welcomed
+v3 reads 1 million+ words
+
+
