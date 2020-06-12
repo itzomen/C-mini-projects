@@ -12,7 +12,7 @@ This is a c program that reads the characters from a source text file and output
 # words_occurrencesv3
 //creates dynamic array to read 1 million+ words
 
-I want to create a dynamic array so that it will be able to read approximately one million+ words but i'm having issues doing that.
+I created a dynamic array so that it will be able to read approximately one million+ words.
 
 
 The limited number of words it can read now is approximately 40000 using stack allocation.
