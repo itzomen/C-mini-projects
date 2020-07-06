@@ -11,7 +11,7 @@ struct wordss{
     int count;
     char words[40]; 
 };
-
+//Structure to Sava words and occurence
 int main(){
 
     struct wordss *ptr;
@@ -23,7 +23,7 @@ int main(){
     int index = 0;
 
 
-    printf("Enter a number greater than the number of words in the file else program crashes\n");
+    printf("Enter an approximate number of words in the file that is that is greater than the actual number else program crashes\n");
     scanf("%d", &max);
     printf("Scanning file...");
 
@@ -137,7 +137,7 @@ int main(){
         //%d makes number printed right justified
         fprintf(fpo, "\n%d \t %-10s \t %d \n", i+1, (ptr + i)->words, (ptr + i)->count);
     }
-    printf("\nPrinting content to file successful\n");
+    printf("\nWord occurrences printed to file successful\n");
     printf("\n");
     printf("Press any key to exit\n");
 
