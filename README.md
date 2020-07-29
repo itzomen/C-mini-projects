@@ -1,3 +1,3 @@
-MY C MINI PROJECTS
+# My C Mini Projects
 
-#Learning the C programming language
+Learning the C programming language
