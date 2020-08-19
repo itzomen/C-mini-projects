@@ -15,7 +15,7 @@ This is a c program that reads the characters from a source text file and output
 I created a dynamic array so that it will be able to read approximately one million+ words.
 
 
-The limited number of words it can read now is approximately 40000 using stack allocation.
+The limited number of words v1 and v2 can read is approximately 40000 using stack allocation.
 That's, MAX_WORDS can't be approximately more than 40000.
 
 v3 reads 1 million+ words
