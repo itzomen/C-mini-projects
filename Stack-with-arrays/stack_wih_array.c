@@ -1,11 +1,11 @@
 /*C program using arrays to implement the stack data structure*/
 #include <stdio.h>
 #include <stdlib.h>
-
+//MAX is the maximum size of the stack
 #define MAX 100
 
 int stack[MAX], n, top=-1, option, x;
-
+//Functions
 void push(void);
 void pop(void);
 void display_stack(void);
@@ -14,7 +14,7 @@ void topOfStack(void);
 
 
 int main(){
-
+    //Do until input is zero
     printf("\n\t IMPLEMENTATION OF STACK WITH ARRAYS IN C \t\n");
     printf("\n Create your Stack by entring the size of the Stack: \t");
     scanf("%d", &n);

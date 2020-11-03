@@ -10,4 +10,10 @@ The program has 4 main options
 2. Pop - Removes last element from stack (LIFO)
 3. Display - Which displays the current elements in the stack
 4. Size of stack - Which gives the present size of the satck
+4. Top of stack - Which gives the element at the top of the stack
+
+### Notes
+- The variable MAX defines the maximum number supported by the array
+- The stack is an array of intergers as defined by 'int stack[MAX]'
+- The program crashes when character values are entered as option or pushed values
 
