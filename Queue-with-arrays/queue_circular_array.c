@@ -5,6 +5,17 @@
 #define MAX 100
 
 int queue[MAX], n, front=-1, back=-1, option, x;
+//Checks
+// Check if the queue is full
+int isFull() {
+  if ((front == back + 1) || (front == 0 && back == n - 1)) return 1;
+  return 0;
+}
+// Check if the queue is empty
+int isEmpty() {
+  if (front == -1) return 1;
+  return 0;
+}
 //Functions
 void enqueue(void);
 void dequeue(void);
@@ -16,7 +27,7 @@ void endOfQueue(void);
 
 int main(){
     //Do until input is zero
-    printf("\n\t IMPLEMENTATION OF QUEUE WITH ARRAYS IN C \t\n");
+    printf("\n\t IMPLEMENTATION OF QUEUE WITH CIRCULAR ARRAYS IN C \t\n");
     printf("\n Create your queue by entring the size of the queue: \t");
     scanf("%d", &n);
 
@@ -90,31 +101,39 @@ int main(){
 }
 
 void enqueue(){
-    if(back == n-1){
+    if(isFull()){
         printf("\n\t Your queue is full \t\n");
     }
     else {
         if (front == -1)
             front = 0;
+        back = (back + 1) % n;
         printf("\n\t Enter the value you want to enqueue: ");
         scanf("%d", &x);
-        back++;
         queue[back] = x;
         printf("\nInserted -> %d", x);
   }
 }
 void dequeue(){
-    if (front == -1)
+    int y;
+    if (isEmpty()){
         printf("\n\t Your queue is under flow \t\n");
+        return (-1);
+    }
     else{
-        printf("\n\t %d has been dequeueped \t", queue[front]);
-        front++;
-        if (front > back)
+        y = queue[front];
+        if (front == back){
             front = back = -1;
+        }
+        else{
+            front = (front + 1) % n;
+        }
+        printf("\n\t %d has been dequeueped \t", y);
+        return y;
     }
 }
 void display_queue(){
-    if(back == -1){
+    if(isEmpty()){
         printf("\n\t Your queue is empty \t\n");
     }
     else{
@@ -127,15 +146,15 @@ void display_queue(){
     }
 }
 void queue_size(){
-    if(back == -1){
+    if(isEmpty()){
         printf("\n\t Your queue is empty \t\n");
     }
     else{
-        printf("\n\t The queue size is %d\t\n", back+1);
+        printf("\n\t The queue size is %d\t\n", ((n-(front+back)) % (n))+2);
     }
 }
 void headOfQueue(){
-    if(back == -1){
+    if(isEmpty()){
             printf("\n\t Your queue is empty \t\n");
     }
     else{
@@ -144,7 +163,7 @@ void headOfQueue(){
     }
 }
 void endOfQueue(){
-    if(back == -1){
+    if(isEmpty()){
             printf("\n\t Your queue is empty \t\n");
     }
     else{
