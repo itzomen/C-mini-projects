@@ -26,7 +26,11 @@ void displayArray(int array[], int size){
 int main(){
     int arr[] = {101, 115, 30, 63, 47, 20};
     int size = sizeof(arr) / sizeof(arr[0]);
+    printf("Before sorting \n");
+    displayArray(arr, size);
     selectionSort(arr, size);
+    printf("\n");
+    printf("After sorting \n");
     displayArray(arr, size);
     return 0;
 }

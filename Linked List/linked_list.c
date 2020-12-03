@@ -1,29 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//variables
+int option;
+
 struct node{
     int data;
     struct node *next;
 };
 
 //Functions
-void push(void);
-void pop(void);
-void display_stack(void);
-void stack_size(void);
-void topOfStack(void);
+void addAtBeginning(void);
 
 
 int main(){
     //Do until input is zero
     printf("\n\t IMPLEMENTATION OF LINKED LIST IN C \t\n");
-    printf("\n Create your Stack by entring the size of the Stack: \t");
-    scanf("%d", &n);
 
     do{
 
         printf("\n\t Choose an option: \t\n");
-        printf("\n\t 1.PUSH \n\t 2.POP \n\t 3.Display Stack Elements \n\t 4.Size of Stack \n\t 5.Top of Stack \n\t 0.Exit Program \t");
+        printf("\n\t 1.Add Element at the  Beginning \n\t 2.Add Element at the  End \n\t 3.Add Element at a specific position \n\t 4.Delete Linked list \n\t 5.Display Linked list \n\t 0.Exit Program \t");
         printf("\n\n\t");
         scanf("%d", &option);
         switch(option)
@@ -32,7 +29,7 @@ int main(){
                 {
                   system("cls");
                   printf("\n\t__________________________________________________\t\t\n");
-                  //push();
+                  void addAtBeginning(void);
                   printf("\n\t__________________________________________________\t\t\n");
                   break;
                 }
@@ -80,4 +77,6 @@ int main(){
     }while(option != 0);
     return 0;
 }
+void addAtBeginning(){
 
+}
