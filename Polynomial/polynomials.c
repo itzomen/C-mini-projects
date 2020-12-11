@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-int option;
+int option, deg_p, deg_q;
 
 struct Poly_Node{ 
   int coef;
@@ -20,6 +20,7 @@ void traverse(struct Poly_Node *);
 //main functions
 void create_poly();
 void display_poly();
+void degree_poly();
 
 int main(){
     //Do until input is zero
@@ -30,7 +31,7 @@ int main(){
     do{
 
         printf("\n\t Choose an option: \t\n");
-        printf("\n\t 1.CREATE Polynomials \n\t 2.DISPLAY Polynomials \n\t 3.traverse queue Elements \n\t 4.Size of queue \n\t 5.Head of queue \n\t 6.End of queue \n\t 0.Exit Program \t");
+        printf("\n\t 1.CREATE Polynomials \n\t 2.DISPLAY Polynomials \n\t 3.Degree of P(x) and Q(x) \n\t 4.Size of queue \n\t 5.Head of queue \n\t 6.End of queue \n\t 0.Exit Program \t");
         printf("\n\n\t");
         scanf("%d", &option);
         switch(option)
@@ -55,7 +56,7 @@ int main(){
                 {
                   system("cls");
                   printf("\n\t__________________________________________________\t\t\n");
-                  //traverse_queue();
+                  degree_poly();
                   printf("\n\t__________________________________________________\t\t\n");
                   break;
                 }
@@ -202,24 +203,31 @@ void traverse(struct Poly_Node *start){
 
 
 void display_poly(){
-    printf("\n")
+    printf("\n");
     printf("\n\tP(x) = ");
     traverse(start_p);
     printf("\n\tQ(x) = ");
     traverse(start_q);
 }
+
 void create_poly(){
   //Getting polynomial coef and exp
     printf("\n\tEnter P(X)!\n");
     printf("\tEnter Number of terms:");
     scanf("%d",&n);
-
+    
+    deg_p = 0;
     for(i=0;i<n;i++){ 
     
       printf("Enter coefficient %d: ", i+1);
       scanf("%d",&c);
       printf("Enter exponent %d: ", i+1);
       scanf("%d",&e);
+      if (deg_p < e)
+      {
+        deg_p = e;
+      }
+      
       insertTerms(&start_p,c,e);
 
     }
@@ -228,14 +236,24 @@ void create_poly(){
     printf("\tEnter Number of terms:");
     scanf("%d",&n);
 
+    deg_q = 0;
     for(i=0;i<n;i++){ 
     
     printf("Enter coefficient %d: ", i+1);
     scanf("%d",&c);
     printf("Enter exponent %d: ", i+1);
     scanf("%d",&e);
+    if (deg_q < e)
+      {
+        deg_q = e;
+      }
     insertTerms(&start_q,c,e);
 
   }
 
+}
+
+void degree_poly(){
+    printf("\n\tDegree of P(x) = %d ", deg_p);
+    printf("\n\tDegree of Q(x) = %d ", deg_q);
 }
