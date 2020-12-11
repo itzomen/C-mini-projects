@@ -1,7 +1,8 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 
-int option, deg_p, deg_q;
+int option, deg_p, deg_q, eval;
 
 struct Poly_Node{ 
   int coef;
@@ -22,6 +23,7 @@ void create_poly();
 void display_poly();
 void degree_poly();
 void add_poly(struct Poly_Node **,struct Poly_Node **,struct Poly_Node **);
+void eval_poly(struct Poly_Node *,int);
 
 int main(){
     //Do until input is zero
@@ -32,7 +34,7 @@ int main(){
     do{
 
         printf("\n\t Choose an option: \t\n");
-        printf("\n\t 1.CREATE Polynomials \n\t 2.DISPLAY Polynomials \n\t 3.Degree of P(x) and Q(x) \n\t 4.Add P(x) and Q(x) \n\t 5.Head of queue \n\t 6.End of queue \n\t 0.Exit Program \t");
+        printf("\n\t 1.CREATE Polynomials \n\t 2.DISPLAY Polynomials \n\t 3.Degree of P(x) and Q(x) \n\t 4.Add P(x) and Q(x) \n\t 5.Value of P(x) and Q(x) when x is an interger \n\t 6.End of queue \n\t 0.Exit Program \t");
         printf("\n\n\t");
         scanf("%d", &option);
         switch(option)
@@ -76,7 +78,8 @@ int main(){
                 {
                   system("cls");
                   printf("\n\t__________________________________________________\t\t\n");
-                  //headOfQueue();
+                  eval_poly(start_p, eval);
+                  eval_poly(start_q, eval);
                   printf("\n\t__________________________________________________\t\t\n");
                   break;
                 }
@@ -313,3 +316,30 @@ void add_poly(struct Poly_Node** start_p,struct Poly_Node **start_q,struct Poly_
   
 }//End of function
 
+void eval_poly(struct Poly_Node* poly, int eval){
+  struct Poly_Node *temp;
+  int total=0;
+  temp=poly;
+  //get x
+  printf("\n Enter value of x :");
+  scanf("%d", &eval);
+
+  if (temp==NULL){
+    printf("Empty polynomial\n");
+  }
+  else
+  {
+    int coeff,expo, expo_result;
+    while(temp!=NULL){
+      coeff=temp->coef;
+      expo=temp->exp;
+      
+
+      total = total +  coeff * pow(eval, expo);
+      temp=temp->link;
+      
+    }
+    //printf("\n\tPolynomial expo %d coef %d \n",expo, coeff);
+    printf("\n\t When x = %d, the polynomial evalautes to %d \n", eval, total);
+  }
+}
