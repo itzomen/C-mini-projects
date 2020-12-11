@@ -2,6 +2,8 @@
 #include<conio.h>
 #include<stdlib.h>
 
+int option;
+
 struct Poly_Node{ 
   int coef;
   int exp;
@@ -10,7 +12,7 @@ struct Poly_Node{
 
 //functions
 void insertTerms(struct Poly_Node **,int,int);
-void display(struct Poly_Node *);
+void traverse(struct Poly_Node *);
 
 int main(){
     //Do until input is zero
@@ -21,10 +23,40 @@ int main(){
     //vars
     int i,n,c,e;
 
+    //Getting polynomial coef and exp
+    printf("\n\tEnter P(X)!\n");
+    printf("\tEnter Number of terms:");
+    scanf("%d",&n);
+
+    for(i=0;i<n;i++){ 
+    
+      printf("Enter coefficient %d: ", i+1);
+      scanf("%d",&c);
+      printf("Enter exponent %d: ", i+1);
+      scanf("%d",&e);
+      insertTerms(&start_p,c,e);
+
+    }
+
+    printf("\n\tEnter second polynomial!\n");
+    printf("\tEnter Number of terms:");
+    scanf("%d",&n);
+
+    for(i=0;i<n;i++){ 
+    
+    printf("Enter coefficient %d: ", i+1);
+    scanf("%d",&c);
+    printf("Enter exponent %d: ", i+1);
+    scanf("%d",&e);
+    insertTerms(&start_q,c,e);
+
+  }
+
+
     do{
 
         printf("\n\t Choose an option: \t\n");
-        printf("\n\t 1.ENQUEUE \n\t 2.DEQUEUE \n\t 3.Display queue Elements \n\t 4.Size of queue \n\t 5.Head of queue \n\t 6.End of queue \n\t 0.Exit Program \t");
+        printf("\n\t 1.DISPLAY Polynomials \n\t 2.DEQUEUE \n\t 3.traverse queue Elements \n\t 4.Size of queue \n\t 5.Head of queue \n\t 6.End of queue \n\t 0.Exit Program \t");
         printf("\n\n\t");
         scanf("%d", &option);
         switch(option)
@@ -33,7 +65,13 @@ int main(){
                 {
                   system("cls");
                   printf("\n\t__________________________________________________\t\t\n");
-                  enqueue();
+
+                  printf("\nP(x) = ");
+                  traverse(start_p);
+
+                  printf("\nQ(x) = ");
+                  traverse(start_q);
+
                   printf("\n\t__________________________________________________\t\t\n");
                   break;
                 }
@@ -41,7 +79,7 @@ int main(){
                 {
                   system("cls");
                   printf("\n\t__________________________________________________\t\t\n");
-                  dequeue();
+                  //dequeue();
                   printf("\n\t__________________________________________________\t\t\n");
                   break;
                 }
@@ -49,7 +87,7 @@ int main(){
                 {
                   system("cls");
                   printf("\n\t__________________________________________________\t\t\n");
-                  display_queue();
+                  //traverse_queue();
                   printf("\n\t__________________________________________________\t\t\n");
                   break;
                 }
@@ -57,7 +95,7 @@ int main(){
                 {
                   system("cls");
                   printf("\n\t__________________________________________________\t\t\n");
-                  queue_size();
+                  //queue_size();
                   printf("\n\t__________________________________________________\t\t\n");
                   break;
                 }
@@ -65,7 +103,7 @@ int main(){
                 {
                   system("cls");
                   printf("\n\t__________________________________________________\t\t\n");
-                  headOfQueue();
+                  //headOfQueue();
                   printf("\n\t__________________________________________________\t\t\n");
                   break;
                 }
@@ -73,7 +111,7 @@ int main(){
                 {
                   system("cls");
                   printf("\n\t__________________________________________________\t\t\n");
-                  endOfQueue();
+                  //endOfQueue();
                   printf("\n\t__________________________________________________\t\t\n");
                   break;
                 }
@@ -87,11 +125,108 @@ int main(){
         }
 
     }while(option != 0);
-    return 0;
+    getch();
 }
 
-void insertTerms(){
-}
+void insertTerms(struct Poly_Node **start,int c,int e){
+  struct Poly_Node *temp,*temp1,*prev;
 
-void display(){
-}
+  if (*start==NULL){
+    temp=(struct Poly_Node*)malloc(sizeof(struct Poly_Node));
+    if (temp==NULL){
+      printf("Poly_Node is not created, Term cannot be inserted\n");
+    }
+    else{ 
+      temp->coef=c;
+      temp->exp=e;
+      temp->link=NULL;
+      *start=temp;
+    }
+  }
+  else{
+    temp1=*start;
+    while (temp1!=NULL && temp1->exp>e){
+      prev=temp1;
+      temp1=temp1->link;
+    }
+
+    if(temp1==NULL){
+      temp=(struct Poly_Node *)malloc(sizeof(struct Poly_Node));
+      if (temp==NULL){
+      printf("Poly_Node is not created, Term cannot be inserted\n");
+      }
+      else{ 
+        temp->coef=c;
+        temp->exp=e;
+        temp->link=NULL;
+        prev->link=temp;
+      }
+    }//ENDIF
+    else
+    {
+      if(temp1->exp==e){
+        temp1->coef=temp1->coef+c;
+      }
+      else
+      {
+        if(temp1==*start){
+          temp=(struct Poly_Node *)malloc (sizeof (struct Poly_Node));
+
+            if(temp==NULL){
+              printf("Poly_Node is not created\n");
+            }
+            else
+            { 
+              temp->coef=c;
+              temp->exp=e;
+              temp->link=*start;
+              *start=temp;
+
+            }
+        }//end if
+        else
+        {
+          temp=(struct Poly_Node *)malloc(sizeof(struct Poly_Node));
+
+          if (temp==NULL){
+            printf("Poly_Node is not created\n");
+          }
+          else
+          { 
+            temp->coef=c;
+            temp->exp=e;
+            temp->link=temp1;
+            prev->link=temp;
+
+          }//endesle
+        }
+        
+      }
+      
+    }
+    
+  }
+}//end funct
+
+
+void traverse(struct Poly_Node *start){
+  struct Poly_Node *temp;
+  temp=start;
+
+  if (temp==NULL){
+    printf("Empty polynomial\n");
+  }
+  else
+  {
+    while(temp!=NULL){
+      printf("%d x^%d",temp->coef,temp->exp);
+      temp=temp->link;
+      if(temp!=NULL)
+        printf(" + ");
+      else
+        printf("\n");
+      
+    }
+  }
+  
+}//End Traverse
