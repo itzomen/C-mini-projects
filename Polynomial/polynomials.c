@@ -1,5 +1,4 @@
 #include<stdio.h>
-#include<conio.h>
 #include<stdlib.h>
 
 int option;
@@ -9,54 +8,29 @@ struct Poly_Node{
   int exp;
   struct Poly_Node *link;  
 };
+//creating polynomials structures
+struct Poly_Node *start_p=NULL,*start_q=NULL,*start_r=NULL;
+//vars
+int i,n,c,e;
 
-//functions
+//core functions
 void insertTerms(struct Poly_Node **,int,int);
 void traverse(struct Poly_Node *);
+
+//main functions
+void create_poly();
+void display_poly();
 
 int main(){
     //Do until input is zero
     printf("\n\t IMPLEMENTATION OF POLYNOMIAL WITH Linked List IN C \t\n");
     printf("\n Create your two polynomials i.e P(x) and Q(x): \t");
-    //creating polynomials structures
-    struct Poly_Node *start_p=NULL,*start_q=NULL,*start_r=NULL;
-    //vars
-    int i,n,c,e;
-
-    //Getting polynomial coef and exp
-    printf("\n\tEnter P(X)!\n");
-    printf("\tEnter Number of terms:");
-    scanf("%d",&n);
-
-    for(i=0;i<n;i++){ 
-    
-      printf("Enter coefficient %d: ", i+1);
-      scanf("%d",&c);
-      printf("Enter exponent %d: ", i+1);
-      scanf("%d",&e);
-      insertTerms(&start_p,c,e);
-
-    }
-
-    printf("\n\tEnter second polynomial!\n");
-    printf("\tEnter Number of terms:");
-    scanf("%d",&n);
-
-    for(i=0;i<n;i++){ 
-    
-    printf("Enter coefficient %d: ", i+1);
-    scanf("%d",&c);
-    printf("Enter exponent %d: ", i+1);
-    scanf("%d",&e);
-    insertTerms(&start_q,c,e);
-
-  }
 
 
     do{
 
         printf("\n\t Choose an option: \t\n");
-        printf("\n\t 1.DISPLAY Polynomials \n\t 2.DEQUEUE \n\t 3.traverse queue Elements \n\t 4.Size of queue \n\t 5.Head of queue \n\t 6.End of queue \n\t 0.Exit Program \t");
+        printf("\n\t 1.CREATE Polynomials \n\t 2.DISPLAY Polynomials \n\t 3.traverse queue Elements \n\t 4.Size of queue \n\t 5.Head of queue \n\t 6.End of queue \n\t 0.Exit Program \t");
         printf("\n\n\t");
         scanf("%d", &option);
         switch(option)
@@ -65,13 +39,7 @@ int main(){
                 {
                   system("cls");
                   printf("\n\t__________________________________________________\t\t\n");
-
-                  printf("\nP(x) = ");
-                  traverse(start_p);
-
-                  printf("\nQ(x) = ");
-                  traverse(start_q);
-
+                  create_poly();
                   printf("\n\t__________________________________________________\t\t\n");
                   break;
                 }
@@ -79,7 +47,7 @@ int main(){
                 {
                   system("cls");
                   printf("\n\t__________________________________________________\t\t\n");
-                  //dequeue();
+                  display_poly();
                   printf("\n\t__________________________________________________\t\t\n");
                   break;
                 }
@@ -125,7 +93,7 @@ int main(){
         }
 
     }while(option != 0);
-    getch();
+    return 0;
 }
 
 void insertTerms(struct Poly_Node **start,int c,int e){
@@ -230,3 +198,44 @@ void traverse(struct Poly_Node *start){
   }
   
 }//End Traverse
+
+
+
+void display_poly(){
+    printf("\n")
+    printf("\n\tP(x) = ");
+    traverse(start_p);
+    printf("\n\tQ(x) = ");
+    traverse(start_q);
+}
+void create_poly(){
+  //Getting polynomial coef and exp
+    printf("\n\tEnter P(X)!\n");
+    printf("\tEnter Number of terms:");
+    scanf("%d",&n);
+
+    for(i=0;i<n;i++){ 
+    
+      printf("Enter coefficient %d: ", i+1);
+      scanf("%d",&c);
+      printf("Enter exponent %d: ", i+1);
+      scanf("%d",&e);
+      insertTerms(&start_p,c,e);
+
+    }
+
+    printf("\n\tEnter second polynomial!\n");
+    printf("\tEnter Number of terms:");
+    scanf("%d",&n);
+
+    for(i=0;i<n;i++){ 
+    
+    printf("Enter coefficient %d: ", i+1);
+    scanf("%d",&c);
+    printf("Enter exponent %d: ", i+1);
+    scanf("%d",&e);
+    insertTerms(&start_q,c,e);
+
+  }
+
+}
