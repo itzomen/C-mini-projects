@@ -4,12 +4,15 @@
 //variables
 int option;
 
-struct node{
+struct Node{
     int data;
-    struct node *next;
+    struct Node *next;
 };
 
+struct Node *head = NULL;
+
 //Functions
+void displayList(void);
 void addAtBeginning(void);
 
 
@@ -29,7 +32,7 @@ int main(){
                 {
                   system("cls");
                   printf("\n\t__________________________________________________\t\t\n");
-                  void addAtBeginning(void);
+                  //addAtBeginning();
                   printf("\n\t__________________________________________________\t\t\n");
                   break;
                 }
@@ -61,7 +64,7 @@ int main(){
                 {
                   system("cls");
                   printf("\n\t__________________________________________________\t\t\n");
-                  //topOfStack();
+                  displayList();
                   printf("\n\t__________________________________________________\t\t\n");
                   break;
                 }
@@ -78,5 +81,20 @@ int main(){
     return 0;
 }
 void addAtBeginning(){
+}
+
+void displayList(){
+  struct Node *temp = head;
+  if (head != NULL){
+    printf("\n\tList elements are - \t\n");
+    while(temp != NULL)
+    {
+        printf("\n\t%d --->\t\n",temp->data);
+        temp = temp->next;
+    }
+  }
+  else {
+    printf("\n\tList is empty\t\n");
+  }
 
 }
