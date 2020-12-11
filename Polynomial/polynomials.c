@@ -21,6 +21,7 @@ void traverse(struct Poly_Node *);
 void create_poly();
 void display_poly();
 void degree_poly();
+void add_poly(struct Poly_Node **,struct Poly_Node **,struct Poly_Node **);
 
 int main(){
     //Do until input is zero
@@ -31,7 +32,7 @@ int main(){
     do{
 
         printf("\n\t Choose an option: \t\n");
-        printf("\n\t 1.CREATE Polynomials \n\t 2.DISPLAY Polynomials \n\t 3.Degree of P(x) and Q(x) \n\t 4.Size of queue \n\t 5.Head of queue \n\t 6.End of queue \n\t 0.Exit Program \t");
+        printf("\n\t 1.CREATE Polynomials \n\t 2.DISPLAY Polynomials \n\t 3.Degree of P(x) and Q(x) \n\t 4.Add P(x) and Q(x) \n\t 5.Head of queue \n\t 6.End of queue \n\t 0.Exit Program \t");
         printf("\n\n\t");
         scanf("%d", &option);
         switch(option)
@@ -64,7 +65,10 @@ int main(){
                 {
                   system("cls");
                   printf("\n\t__________________________________________________\t\t\n");
-                  //queue_size();
+                  add_poly(&start_p,&start_q,&start_r);
+                  printf("\n\tSum of P(x) and Q(x) equals:");
+                  traverse(start_r);
+                  start_r=NULL;
                   printf("\n\t__________________________________________________\t\t\n");
                   break;
                 }
@@ -177,7 +181,6 @@ void insertTerms(struct Poly_Node **start,int c,int e){
   }
 }//end funct
 
-
 void traverse(struct Poly_Node *start){
   struct Poly_Node *temp;
   temp=start;
@@ -199,8 +202,6 @@ void traverse(struct Poly_Node *start){
   }
   
 }//End Traverse
-
-
 
 void display_poly(){
     printf("\n");
@@ -232,7 +233,7 @@ void create_poly(){
 
     }
 
-    printf("\n\tEnter second polynomial!\n");
+    printf("\n\tEnter Q(x)!\n");
     printf("\tEnter Number of terms:");
     scanf("%d",&n);
 
@@ -257,3 +258,58 @@ void degree_poly(){
     printf("\n\tDegree of P(x) = %d ", deg_p);
     printf("\n\tDegree of Q(x) = %d ", deg_q);
 }
+
+void add_poly(struct Poly_Node** start_p,struct Poly_Node **start_q,struct Poly_Node** start_r){
+  int c,e;
+  struct Poly_Node *pptr,*qptr;
+  *start_r=NULL;
+
+  pptr=*start_p;
+  qptr=*start_q;
+
+  while(pptr!=NULL && qptr!=NULL){
+    if (pptr->exp==qptr->exp){
+      c=pptr->coef+qptr->coef;
+      e=pptr->exp;
+
+      insertTerms(start_r,c,e);
+
+      pptr=pptr->link;
+      qptr=qptr->link;
+    }
+    else
+    {
+      if (pptr->exp>qptr->exp){
+        c=pptr->coef;
+        e=pptr->exp;
+
+        insertTerms(start_r,c,e);
+        pptr=pptr->link;
+
+      }
+      else
+      {
+        c=qptr->coef;
+        e=qptr->exp;
+        insertTerms(start_r,c,e);
+        qptr=qptr->link;
+      }
+      
+    }
+    
+  }
+  while(pptr!=NULL){
+    c=pptr->coef;
+    e=pptr->exp;
+    insertTerms(start_r,c,e);
+    pptr=pptr->link;
+  }
+  while (qptr!=NULL){
+    c=qptr->coef;
+    e=qptr->exp;
+    insertTerms(start_r,c,e);
+    qptr=qptr->link;
+  }
+  
+}//End of function
+
