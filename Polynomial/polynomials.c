@@ -24,6 +24,7 @@ void display_poly();
 void degree_poly();
 void add_poly(struct Poly_Node **,struct Poly_Node **,struct Poly_Node **);
 void eval_poly(struct Poly_Node *,int);
+void multiply_poly(struct Poly_Node **,struct Poly_Node **,struct Poly_Node **);
 
 int main(){
     //Do until input is zero
@@ -34,7 +35,7 @@ int main(){
     do{
 
         printf("\n\t Choose an option: \t\n");
-        printf("\n\t 1.CREATE Polynomials \n\t 2.DISPLAY Polynomials \n\t 3.Degree of P(x) and Q(x) \n\t 4.Add P(x) and Q(x) \n\t 5.Value of P(x) and Q(x) when x is an interger \n\t 6.End of queue \n\t 0.Exit Program \t");
+        printf("\n\t 1.CREATE Polynomials \n\t 2.DISPLAY Polynomials \n\t 3.Degree of P(x) and Q(x) \n\t 4.Add P(x) and Q(x) \n\t 5.Value of P(x) and Q(x) when x is an interger \n\t 6.Multiply P(x) and Q(x) \n\t 0.Exit Program \t");
         printf("\n\n\t");
         scanf("%d", &option);
         switch(option)
@@ -68,7 +69,7 @@ int main(){
                   system("cls");
                   printf("\n\t__________________________________________________\t\t\n");
                   add_poly(&start_p,&start_q,&start_r);
-                  printf("\n\tSum of P(x) and Q(x) equals:");
+                  printf("\n\tSum of P(x) and Q(x) equals: ");
                   traverse(start_r);
                   start_r=NULL;
                   printf("\n\t__________________________________________________\t\t\n");
@@ -87,7 +88,10 @@ int main(){
                 {
                   system("cls");
                   printf("\n\t__________________________________________________\t\t\n");
-                  //endOfQueue();
+                  multiply_poly(&start_p,&start_q,&start_r);
+                  printf("\n\tProduct of P(x) and Q(x) equals: ");
+                  traverse(start_r);
+                  start_r=NULL;
                   printf("\n\t__________________________________________________\t\t\n");
                   break;
                 }
@@ -342,4 +346,38 @@ void eval_poly(struct Poly_Node* poly, int eval){
     //printf("\n\tPolynomial expo %d coef %d \n",expo, coeff);
     printf("\n\t When x = %d, the polynomial evalautes to %d \n", eval, total);
   }
+}
+
+void multiply_poly(struct Poly_Node** start_p,struct Poly_Node **start_q,struct Poly_Node** start_r){
+  int c,e;
+  struct Poly_Node *pptr,*qptr;
+  *start_r=NULL;
+  
+  pptr=*start_p;
+  qptr=*start_q;
+
+  if (*start_p==NULL && *start_q==NULL)
+    printf("\nMultiplication of polynomial is not possible!\n");
+  else
+  {
+    while(pptr!=NULL){
+      
+      qptr=*start_q;
+      while(qptr!=NULL){
+        
+        c=pptr->coef*qptr->coef;
+        e=pptr->exp+qptr->exp;
+        
+        insertTerms(start_r,c,e);
+        
+        qptr=qptr->link;
+
+      }
+
+      pptr=pptr->link;
+   
+   }
+  
+  }
+  
 }
