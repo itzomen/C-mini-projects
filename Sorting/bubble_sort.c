@@ -24,3 +24,24 @@ void bubbleSort(int array[], int size) {
       break;
   }
 }
+
+// Function to print an array
+void printArray(int array[], int size) {
+  for (int i = 0; i < size; ++i) {
+    printf("%d  ", array[i]);
+  }
+  printf("\n");
+}
+
+int main() {
+    //test array
+    int test[] = {-23, 45, 6, 0, 234, -3, 9};
+    //getting size of array
+    int size = sizeof(test) / sizeof(test[0]);
+    printf("Sorted Array in Ascending Order:\n");
+    printArray(test, size);
+    //Sorting
+    bubbleSort(test, size);
+    printf("Sorted Array in Ascending Order:\n");
+    printArray(test, size);
+}
