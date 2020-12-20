@@ -4,13 +4,16 @@
 
 // Binary Search
 int binarySearch(int array[], int x, int low, int high) {
-  if (high >= low) {
+  //if (high >= low)
+  if (high <= low)
+        return (x > array[low]) ? (low + 1) : low;
+
     // Get position of middle element
     int mid = low + (high - low) / 2;
 
     // If found at mid, then return it
     if (array[mid] == x)
-      return mid;
+      return mid + 1;
 
     // Search the left half
     if (array[mid] > x)
@@ -18,9 +21,7 @@ int binarySearch(int array[], int x, int low, int high) {
 
     // Search the right half
     return binarySearch(array, x, mid + 1, high);
-  }
 
-  return -1;
 }
 
 // Insertion Sort
@@ -57,5 +58,11 @@ int main() {
     int test[] = {-23, 45, 6, 0, 234, -3, 9};
     //getting size of array
     int size = sizeof(test) / sizeof(test[0]);
+    printf("UnSorted Array:\n");
+    printArray(test, size);
+    //Sorting
+    insertionSort(test, size);
+    printf("Sorted array in ascending order:\n");
+    printArray(test, size);
     
 }
