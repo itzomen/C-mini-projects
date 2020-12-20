@@ -38,7 +38,7 @@ int main() {
     int test[] = {-23, 45, 6, 0, 234, -3, 9};
     //getting size of array
     int size = sizeof(test) / sizeof(test[0]);
-    printf("Sorted Array in Ascending Order:\n");
+    printf("UnSorted Array:\n");
     printArray(test, size);
     //Sorting
     bubbleSort(test, size);
