@@ -23,6 +23,27 @@ int binarySearch(int array[], int x, int low, int high) {
   return -1;
 }
 
+// Insertion Sort
+void insertionSort(int array[], int size) {
+    int pos, j, k;
+
+    for (int i = 1; i < size; i++) {
+        int key = array[i];
+        int j = i - 1;
+
+        pos = binarySearch(array, key, 0, j);
+
+        // Compare key with each element on the left of it until an element smaller than
+        // it is found.
+        // For descending order, change key<array[j] to key>array[j].
+        while (j >= pos) {
+        array[j + 1] = array[j];
+        --j;
+        }
+        array[j + 1] = key;
+    }
+}
+
 int main() {
     //test array
     int test[] = {-23, 45, 6, 0, 234, -3, 9};
