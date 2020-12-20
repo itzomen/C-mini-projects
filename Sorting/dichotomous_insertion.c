@@ -44,6 +44,14 @@ void insertionSort(int array[], int size) {
     }
 }
 
+// Function to print an array
+void printArray(int array[], int size) {
+  for (int i = 0; i < size; ++i) {
+    printf("%d  ", array[i]);
+  }
+  printf("\n");
+}
+
 int main() {
     //test array
     int test[] = {-23, 45, 6, 0, 234, -3, 9};
