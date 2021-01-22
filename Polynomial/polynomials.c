@@ -4,14 +4,17 @@
 
 int option, deg_p, deg_q, eval;
 
+//data structure for representation of polynomials
 struct Poly_Node{ 
   int coef;
   int exp;
   struct Poly_Node *link;  
 };
+
 //creating polynomials structures
 struct Poly_Node *start_p=NULL,*start_q=NULL,*start_r=NULL;
-//vars
+
+//variables used in functions
 int i,n,c,e;
 
 //core functions
@@ -29,7 +32,8 @@ void multiply_poly(struct Poly_Node **,struct Poly_Node **,struct Poly_Node **);
 int main(){
     //Do until input is zero
     printf("\n\t IMPLEMENTATION OF POLYNOMIAL WITH Linked List IN C \t\n");
-    printf("\n Create your two polynomials i.e P(x) and Q(x): \t");
+    printf("\n Create your two polynomials i.e P(x) and Q(x): to operate with the functions \t");
+    printf("\n");
 
 
     do{
@@ -225,7 +229,7 @@ void create_poly(){
     scanf("%d",&n);
     
     deg_p = 0;
-    for(i=0;i<n;i++){ 
+    for(i=0;i<n;i++){
     
       printf("Enter coefficient %d: ", i+1);
       scanf("%d",&c);
